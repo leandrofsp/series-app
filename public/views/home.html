@@ -1,13 +1,14 @@
+<input ng-model="searchSerie" class="form-control" placeholder="Busque sua serie">
 <table class="table">
 	<tbody>
-		<tr ng-repeat="serie in series">
+		<tr ng-repeat="serie in series | filter:searchSerie">
 			<td>
 				<a href="#/series/{{serie._id}}">
 					<span style="font-size:25px;">{{serie.titulo}}</span>
 				</a>
 			</td>
 			<td>
-				<a class="btn btn-danger" href="#/delete/{{serie._id}}">				  
+				<a class="btn btn-danger" href="#/delete/{{serie._id}}">
 				  Apagar
 				</a>
 			</td>
@@ -24,4 +25,4 @@
 	<a href="#/adiciona">
 		<button class="btn btn-primary">Adicionar Série</button>
 	</a>
-</div>		
+</div>
