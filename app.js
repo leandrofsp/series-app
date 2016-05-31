@@ -4,7 +4,7 @@ var favicon       = require('serve-favicon');
 var logger        = require('morgan');
 var cookieParser  = require('cookie-parser');
 var bodyParser    = require('body-parser');
-
+//Importar o mongoose:
 var mongoose      = require('mongoose');
 require('./models/Series');
 
@@ -15,6 +15,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
+//definimos a view engine a ser utilizada, neste caso html.
 app.set('view engine', 'html');
 app.engine('html', require('ejs').renderFile);
 
@@ -61,7 +62,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-mongoose.connect('mongodb://localhost/series');
+mongoose.connect('mongodb://localhost/series'); // conectamos ao banco
 
 
 module.exports = app;

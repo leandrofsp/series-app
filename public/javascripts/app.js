@@ -1,5 +1,6 @@
-var app = angular.module('seriesApp', ['ui.router']);
+var app = angular.module('seriesApp', ['ui.router']); //Criamos um módulo de nome seriesApp injetando o módulo ui.router como dependência.
 
+//vamos adicionar nosso service "series" que tem como dependência o service $http para fazer requisições HTTP para nossa API
 app.factory('series', ['$http', function($http) {
 
 	var service = {
@@ -36,6 +37,11 @@ app.factory('series', ['$http', function($http) {
 
 }]);
 
+/*Este controller recebe como dependências $scope, $location e o service recém criado, series.
+	Ele é responsável por carregar a lista de séries do banco de dados através do service series 
+	colocando-as no $scope para que esta lista seja exibida na nossa view, e também, adicionar 
+	uma nova série através do método adicionaSerie.*/
+
 app.controller('MainCtrl', ['$scope', '$location', 'series', function($scope, $location, series) {
 	
 	$scope.series = series.series;
@@ -57,6 +63,9 @@ app.controller('MainCtrl', ['$scope', '$location', 'series', function($scope, $l
 
 }]);
 
+/* Este controller é responsável por apagar/atualizar uma série 
+	baseado na série carregada em $scope injetada como dependência. */
+
 app.controller('SeriesCtrl', ['$scope', '$location', 'series', 'serie', function($scope, $location, series, serie) {
 	
 	$scope.serie = serie;
@@ -76,6 +85,7 @@ app.controller('SeriesCtrl', ['$scope', '$location', 'series', 'serie', function
 
 }]);
 
+/* Criaremos também uma diretiva para exibição de um vídeo do youtube (o trailer da série) embutido em um iframe: */
 app.directive('youtube', function() {
 	return {
 		restrict: 'E',
@@ -92,6 +102,7 @@ app.filter('trusted', function ($sce) {
   };
 });
 
+//Vamos criar os estados da nossa aplicação utilizando $stateProvider de ui-router:
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 	
 	$stateProvider.state('home', {
