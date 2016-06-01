@@ -62,15 +62,7 @@ app.use(function(err, req, res, next) {
   });
 });
 
-var autenticacao = { db: { native_parser: true }  
-  , server: { poolSize: 5 }
-  , replset: { rs_name: 'myReplicaSetName' }
-  , user: 'admin'
-  , pass: 'eNrtQFFseNDQ'
-}
-
-
-mongoose.connect('mongodb://localhost/series', autenticacao ); // conectamos ao banco
+mongoose.connect('mongodb://localhost/series'); // conectamos ao banco
 
 
 module.exports = app;
